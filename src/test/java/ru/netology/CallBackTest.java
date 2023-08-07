@@ -18,7 +18,7 @@ public class CallBackTest {
         form.$("[data-test-id=phone] input").setValue("+79270000000");
         form.$("[data-test-id=agreement]").click();
         form.$("button.button").click();
-        $("[data-test-id=notification]").shouldHave(exactText("Встреча успешно забронирована на "));
+        $("[data-test-id=notification]").shouldHave(exactText("Встреча успешно забронирована на " + "10.05.2025"));
     }
 
 }
