@@ -23,7 +23,7 @@ public class CallBackTest {
     void shouldTest() {
         open("http://localhost:9999");
         $("[data-test-id=city] input").setValue("Ставрополь");
-        String curDate = generateDate(2, "dd.MM.yyyy");
+        String curDate = generateDate(7, "dd.MM.yyyy");
         $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.SHIFT,Keys.HOME), Keys.DELETE);
         $("[data-test-id=date] input").sendKeys(curDate);
         $("[data-test-id=name] input").setValue("Петр Петрович");
@@ -32,7 +32,7 @@ public class CallBackTest {
         $("button.button").click();
         $("[data-test-id=notification]")
                 .shouldBe(Condition.visible, Duration.ofSeconds(15))
-                .shouldHave(Condition.exactText("Встреча успешно забронирована на" + "10.05.2025"));
+                .shouldHave(Condition.exactText("Успешно!\nВстреча успешно забронирована на " + curDate));
     }
 
 }
