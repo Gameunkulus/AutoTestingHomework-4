@@ -10,8 +10,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.*;
 
 public class CallBackTest {
 
@@ -22,7 +22,8 @@ public class CallBackTest {
     @Test
     void shouldTest() {
         open("http://localhost:9999");
-        $("[data-test-id=city] input").setValue("Ставрополь");
+        $("[data-test-id=city] input").setValue("Ст");
+        $$(".menu-item__control").findBy(text("Ставрополь")).click();
         String curDate = generateDate(7, "dd.MM.yyyy");
         $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.SHIFT,Keys.HOME), Keys.DELETE);
         $("[data-test-id=date] input").sendKeys(curDate);
