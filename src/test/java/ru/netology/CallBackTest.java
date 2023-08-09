@@ -3,6 +3,7 @@ package ru.netology;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Keys;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -13,11 +14,18 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class CallBackTest {
+
+    private String generateDate(int addDays, String pattern) {
+        return LocalDate.now().plusDays(addDays).format(DateTimeFormatter.ofPattern(pattern));
+    }
+
     @Test
     void shouldTest() {
         open("http://localhost:9999");
         $("[data-test-id=city] input").setValue("Ставрополь");
-        $("[data-test-id=date] input").sendKeys("10.05.2025");
+        String curDate = generateDate(2, "dd.MM.yyyy");
+        $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.SHIFT,Keys.HOME), Keys.DELETE);
+        $("[data-test-id=date] input").sendKeys(curDate);
         $("[data-test-id=name] input").setValue("Петр Петрович");
         $("[data-test-id=phone] input").setValue("+79270000000");
         $("[data-test-id=agreement]").click();
