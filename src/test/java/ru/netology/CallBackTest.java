@@ -17,7 +17,6 @@ public class CallBackTest {
     void shouldTest() {
         open("http://localhost:9999");
         $("[data-test-id=city] input").setValue("Ставрополь");
-        String curDate = generateDate
         $("[data-test-id=date] input").sendKeys("10.05.2025");
         $("[data-test-id=name] input").setValue("Петр Петрович");
         $("[data-test-id=phone] input").setValue("+79270000000");
